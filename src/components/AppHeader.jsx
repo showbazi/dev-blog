@@ -1,4 +1,6 @@
-import React from 'react'
+import Link from 'next/link';
+import React, { useState } from 'react'
+import { device } from 'utils/ResponsiveBreakpoints';
 import styled from 'styled-components';
 
 
@@ -32,7 +34,12 @@ const hamburgerMenuButtonSvg =  <svg xmlns="http://www.w3.org/2000/svg" classNam
 const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 32px;
+    padding-inline: 2rem;
+
+    @media ${device.tablet} {
+        padding-inline: 4rem;
+    }
 `;
 
 const Logo = styled.div`
@@ -41,9 +48,10 @@ const Logo = styled.div`
     flex-direction: column;
     width: 100px;
     height: 32px;
-    padding-left: 4px;
+    padding-inline: 4px;
     padding-bottom: 14px;
-    border: 1px solid black;
+    border: 1.5px solid ${prop => prop.theme === "light" ? "black" : "rgba(250, 250, 250, 1)"};
+    cursor: pointer;
     position: relative;
 `;
 
@@ -66,7 +74,8 @@ const LinksContainer = styled.div`
 `;
 
 export const IconButton = styled.button`
-    background-color: rgba(0, 0, 0, 0.15);
+    background-color:${prop => prop.theme === "light" ? "" : "rgba(0, 0, 0, 0.4)"} ;
+    color: ${prop => prop.theme === "light" ? "black" : "white"};
     padding: 8px;
     max-width: ${props => props.maxWidth};
     margin-left: ${props => props.marginLeft};
@@ -79,24 +88,23 @@ export const IconButton = styled.button`
     cursor: pointer;
 
     &:hover {
-        transform: scale(1.05);
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color:${prop => prop.theme === "light" ? "rgba(250, 0, 0, 1)" : "rgba(0, 0, 0, 0.5)"} ;
         filter: brightness(5) contrast(2);
     }
 `;
 
 const Icon = styled.svg`
-    color: black;
+    color: ${prop => prop.theme === "light" ? "black" : "white"};
     width: 16px;
     height: 16px;
 `;
 // ------------------------------------styles------------------------------------------
 
 
-const CustomIconButton = ({children}) => {
+const CustomIconButton = ({handleIconHover, toggleTheme, children, theme}) => {
     return (
-        <IconButton>
-            <Icon>
+        <IconButton onMouseEnter={handleIconHover} onMouseLeave={handleIconHover} onClick={toggleTheme}>
+            <Icon theme={theme}>
                 {children}
             </Icon>
         </IconButton>        
@@ -104,18 +112,44 @@ const CustomIconButton = ({children}) => {
 }
 
 // ---------main component------------------
-const AppHeader = () => {
+const AppHeader = ({toggleTheme, theme}) => {
+
+    const [isHovered, setIsHovered] = useState(false);
+    const [isDark, setIsDark] = useState(false)
+
+    const handleIconHover = () => {
+        setIsHovered(prev => !prev);
+    }
+
+    // const handleTheme = () => {
+    //     setIsDark(prev => !prev);
+    // } 
+    
     return (
         <HeaderContainer>
-            <Logo>
-                <LogoElement1>SAGAR</LogoElement1>
-                <LogoElement2>SHOWBAZI.</LogoElement2>
-            </Logo>
+            <Link href="/" alt="homepage">
+                <Logo theme={theme}>
+                    <LogoElement1>SAGAR</LogoElement1>
+                    <LogoElement2>SHOWBAZI.</LogoElement2>
+                </Logo>
+            </Link>
 
             <LinksContainer>
-                <CustomIconButton>{searchButtonSvg}</CustomIconButton>
-                <CustomIconButton>{lightButtonSvg}</CustomIconButton>
-                <CustomIconButton>{hamburgerMenuButtonSvg}</CustomIconButton>
+                <CustomIconButton theme={theme}>
+                    {searchButtonSvg}
+                </CustomIconButton>
+                
+                <CustomIconButton handleIconHover={handleIconHover} toggleTheme={toggleTheme} theme={theme}>
+                    {theme === "dark" ? (
+                        isHovered ? lightButtonSvg : lightButtonBoldSvg
+                    ) : (
+                        isHovered ? nightButtonSvg : nightButtonBoldSvg
+                    )}
+                </CustomIconButton>
+
+                <CustomIconButton theme={theme}>
+                    {hamburgerMenuButtonSvg}
+                </CustomIconButton>
             </LinksContainer>
         </HeaderContainer>
     )

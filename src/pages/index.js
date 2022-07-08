@@ -1,22 +1,40 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../../styles/Home.module.css'
-import AppHeader from 'components/AppHeader'
-import BlogPreviewList from 'components/Blog/BlogPreviewList'
+import Head from 'next/head';
+import styles from '../../styles/Home.module.css';
+import BlogPreviewList from 'components/Blog/BlogPreviewList';
+import connectDB from 'database/connectDB';
+import getFileNames from 'utils/getFileNames';
+import readBlogFiles from 'utils/readBlogFiles';
 
-export default function Home() {
+const Home = () => {
   return (
     <div className={styles.container}>
       <Head>
         <title>Showbazi Blog</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
-
-      <AppHeader />
 
       <BlogPreviewList />
     </div>
   )
+}
+
+export default Home;
+
+export const getStaticProps = async () => {
+  // connecting the database with the server
+  await connectDB();
+  
+  const fileNames = getFileNames();
+
+  fileNames.map(fileName => {
+    const slug = fileName.replace('.mdx', '')
+
+    const parsedFile = readBlogFiles(fileName);
+
+    console.log(parsedFile);
+  })
+  console.log("fiilenames", fileNames);
+
+  return {
+    props: {},
+  }
 }
