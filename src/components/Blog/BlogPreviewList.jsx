@@ -22,15 +22,14 @@ const PostContainer = styled.div`
 // -------------------------styles-----------------------------
 
 
-const BlogPreviewList = () => {
-  const id = useId();
-
+const BlogPreviewList = ({heading, blogs}) => {
+  
   return (
     <>
-        <PostListHeading>Top Blogs</PostListHeading>
+        <PostListHeading>{heading}</PostListHeading>
 
         <PostContainer>
-            {Array(10).fill(0).map((item, index) => <BlogPreviewCard key={index} id={index}/>)}
+            {blogs.map((blog) => <BlogPreviewCard {...blog} key={blog.customID}/>)}
         </PostContainer>
     </>
   )

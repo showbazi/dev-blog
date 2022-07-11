@@ -60,27 +60,47 @@ const Description = styled.p`
 // -------------------------styles----------------------
 
 // ---------main component-----------------
-const BlogPreviewCard = ({id}) => {
+const BlogPreviewCard = ({
+    altText,
+    banner,
+    createdAt,
+    customID,
+    description,
+    readingTime,
+    slug,
+    title,
+    totalViews
+}) => {
     
+    // coverting the slug to a complete link
+    const link = `/blogs/${slug}`
+
     return (
         <>
-            <Link href={`/blog/${id}`}>
+            <Link href={link}>
                 <Box>
-                    <Image src='/memeHead.jpg' width={16} height={9} layout='responsive' objectFit='cover' alt='sjfj'/>
+                    <Image 
+                        src={banner} 
+                        width={16}
+                        height={9}
+                        layout='responsive'
+                        objectFit='cover'
+                        alt={altText}
+                    />
 
-                    <Heading>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, rerum?</Heading>
+                    <Heading>{title}</Heading>
 
                     <HorizontalStack>
-                        <ExtraDetails>Thu 07 2020</ExtraDetails>
-                        <ExtraDetails>50 views</ExtraDetails>
-                        <ExtraDetails>4 min read</ExtraDetails>
+                        <ExtraDetails>{createdAt}</ExtraDetails>
+                        <ExtraDetails>{totalViews} views</ExtraDetails>
+                        <ExtraDetails>{readingTime}</ExtraDetails>
                     </HorizontalStack>
 
                     <Description>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt quas corrupti saepe. Commodi harum quia ad consectetur, odit dolore numquam possimus officia impedit obcaecati modi porro error facilis nobis enim? Molestias modi deleniti deserunt explicabo ipsum possimus veniam provident sapiente quibusdam enim labore quaerat expedita officiis distinctio, laudantium ipsa neque id aliquid minima. Adipisci unde est, aliquid beatae quia nam!
+                        {description}
                     </Description>
 
-                    <Link href="/blog">
+                    <Link href={link}>
                         <IconButton maxWidth="100px" marginLeft="12px" >Read More</IconButton>
                     </Link>
                 </Box>
