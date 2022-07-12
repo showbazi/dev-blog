@@ -3,6 +3,16 @@ import BlogPreviewCard from './BlogPreviewCard';
 import styled from 'styled-components';
 
 // -------------------------styles-----------------------------
+const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+const SubContainer = styled.div`
+
+`;
+
 const PostListHeading = styled.h2`
     text-transform: uppercase;
     font-size: 36px;
@@ -13,10 +23,11 @@ const PostListHeading = styled.h2`
     border-bottom: 2px solid red;
 `;
 
-const PostContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
+const PostsContainer = styled.div`
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem; */
+    width: 60vw;
 `;
 
 // -------------------------styles-----------------------------
@@ -25,13 +36,15 @@ const PostContainer = styled.div`
 const BlogPreviewList = ({heading, blogs}) => {
   
   return (
-    <>
-        <PostListHeading>{heading}</PostListHeading>
+    <MainContainer>
+        <SubContainer>
+            <PostListHeading>{heading}</PostListHeading>
 
-        <PostContainer>
-            {blogs.map((blog) => <BlogPreviewCard {...blog} key={blog.customID}/>)}
-        </PostContainer>
-    </>
+            <PostsContainer>
+                {blogs.map((blog) => <BlogPreviewCard {...blog} key={blog.customID}/>)}
+            </PostsContainer>
+        </SubContainer>
+    </MainContainer>
   )
 }
 

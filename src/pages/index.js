@@ -11,8 +11,8 @@ import getFileNames from 'utils/getFileNames';
 import readBlogFiles from 'utils/readBlogFiles';
 
 const Home = ({topBlogs, latestBlogs}) => {
-  console.log("top blogs", topBlogs);
-  console.log("latest blogs", latestBlogs);
+  // console.log("top blogs", topBlogs);
+  // console.log("latest blogs", latestBlogs);
   return (
     <div className={styles.container}>
       <Head>

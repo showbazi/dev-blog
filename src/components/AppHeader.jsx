@@ -38,7 +38,7 @@ const HeaderContainer = styled.div`
     padding-inline: 2rem;
 
     @media ${device.tablet} {
-        padding-inline: 4rem;
+        padding-inline: 6rem;
     }
 `;
 

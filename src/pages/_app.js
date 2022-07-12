@@ -6,7 +6,7 @@ import '../../styles/globals.css'
 
 
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   
   const toggleTheme = () => {
     theme === "light" ? setTheme("dark") : setTheme("light")

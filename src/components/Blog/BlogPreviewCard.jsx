@@ -73,7 +73,7 @@ const BlogPreviewCard = ({
 }) => {
     
     // coverting the slug to a complete link
-    const link = `/blogs/${slug}`
+    const link = `/blog/${slug}`
 
     return (
         <>
