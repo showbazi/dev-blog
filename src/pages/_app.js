@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
         <GlobalStyles />
         {/* <button onClick={toggleTheme}>Switch Theme</button> */}
         <PageLayout toggleTheme={toggleTheme} theme={theme}>
-            <Component {...pageProps} />
+            <Component {...pageProps} theme={theme}/>
         </PageLayout>
     </ThemeProvider>
   )

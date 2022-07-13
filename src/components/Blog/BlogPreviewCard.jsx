@@ -5,15 +5,6 @@ import { IconButton } from 'components/AppHeader';
 import Link from 'next/link';
 
 // -------------------styles-----------------
-const Box = styled.div`
-    width: 100%;
-    /* border: 1px solid red; */
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    padding-bottom: 24px;
-    cursor: pointer;
-`;
 
 const Heading = styled.h2`
     font-family: 'Poppins', sans-serif;
@@ -27,6 +18,23 @@ const Heading = styled.h2`
     text-overflow: ellipsis;
     overflow:hidden !important;
     -webkit-box-orient: vertical;  
+`;
+
+const Box = styled.div`
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 24px;
+    cursor: pointer;
+
+    &:hover {
+        ${Heading}{
+            color: red;
+            transition: 0.1s ease-in-out;
+        }
+    }
 `;
 
 const HorizontalStack = styled.div`
@@ -69,7 +77,7 @@ const BlogPreviewCard = ({
     readingTime,
     slug,
     title,
-    totalViews
+    totalViews,
 }) => {
     
     // coverting the slug to a complete link

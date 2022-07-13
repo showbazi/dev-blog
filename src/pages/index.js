@@ -10,18 +10,19 @@ import Blog from "database/models/blogModel";
 import getFileNames from 'utils/getFileNames';
 import readBlogFiles from 'utils/readBlogFiles';
 
-const Home = ({topBlogs, latestBlogs}) => {
+const Home = ({topBlogs, latestBlogs, theme}) => {
   // console.log("top blogs", topBlogs);
   // console.log("latest blogs", latestBlogs);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Showbazi Blog</title>
       </Head>
 
-      <BlogPreviewList heading="top blogs" blogs={topBlogs} />
+      <BlogPreviewList heading="top blogs" blogs={topBlogs} theme={theme}/>
 
-      <BlogPreviewList heading="latest blogs" blogs={latestBlogs} />
+      <BlogPreviewList heading="latest blogs" blogs={latestBlogs} theme={theme} />
     </div>
   )
 }
