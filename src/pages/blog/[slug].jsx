@@ -5,16 +5,25 @@ import Blog from "database/models/blogModel";
 import React from "react";
 import BlogHeader from "components/Blog/BlogHeader";
 import styled from "styled-components";
+import MdxComponents from "components/MDX Styles/MdxComponents";
+import { device } from 'utils/ResponsiveBreakpoints';
 
 const BlogContainer = styled.div`
-    width: 68%;
+    /* width: 95%; */
+    padding-inline: 2rem;
+    margin: auto;
+
+    @media ${device.tablet} {
+        padding-inline: 11rem;
+        /* width: 68%;      */
+    }
 `;
 
 const BlogPage = ({mdxSource, blogData}) => {
     return (
         <BlogContainer>
             <BlogHeader {...blogData}/>
-            <MDXRemote {...mdxSource}/>
+            <MDXRemote {...mdxSource} components={MdxComponents}/>
         </BlogContainer>
     )
 }

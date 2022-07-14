@@ -17,7 +17,7 @@ const Box = styled.div`
 const Heading = styled.h2`
     font-family: 'Poppins', sans-serif;
     padding-inline: 12px;
-    font-size: 24px;
+    font-size: 2.5rem;
     font-weight: 600;
     line-height: 1.2;
     display: block; /* Fallback for non-webkit */

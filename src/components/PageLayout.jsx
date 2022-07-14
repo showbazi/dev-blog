@@ -11,7 +11,7 @@ const LayoutContainer = styled.div`
 
   @media ${device.tablet} {
         padding-inline: 4rem;
-    }
+  }
 `;
 
 // -----------------------------styles--------------------------------
