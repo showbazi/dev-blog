@@ -3,12 +3,6 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import vsDark from 'prism-react-renderer/themes/vsDark';
 import styled from "styled-components";
 
-// const exampleCode = `
-// (function someDemo() {
-//   var test = "Hello World!";
-//   console.log(test);
-// })();
-// `;
 
 const CodeContainer = styled.div`
   position: relative;

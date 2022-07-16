@@ -42,7 +42,6 @@ const handleSearch = async (req, res) => {
                     banner: 0,
                     content: 0,
                     altText: 0,
-                    customID: 0,
                 },
             },
         ]

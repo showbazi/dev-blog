@@ -11,11 +11,8 @@ const MainContainer = styled.div`
 `;
 
 const SubContainer = styled.div`
-    /* background-color:${prop => prop.theme === "rgba(255, 255, 255, 0.5)" ? "" : "rgba(0, 0, 0, 0.4)"} ; */
-    /* backdrop-filter: blur(3rem); */
     padding: 0 2rem;
     border-radius: 20px;
-    /* z-index: 2; */
 `;
 
 const PostListHeading = styled.h2`
@@ -29,19 +26,8 @@ const PostListHeading = styled.h2`
 `;
 
 const PostsContainer = styled.div`
-    /* display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem; */
     width: 60vw;
 `;
-
-// const CustomShape = styled.div`
-//   position: absolute;
-//   background-color: red;
-//   width: 200px;
-//   height: 200px;
-//   border-radius: 30% 70% 70% 30% / 70% 70% 30% 30%;
-// `;
 
 // -------------------------styles-----------------------------
 

@@ -8,7 +8,6 @@ import useGetViews from 'hooks/useGetViews';
 const Box = styled.div`
     width: 100%;
     margin-top: 3rem;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -99,4 +98,4 @@ const BlogHeader = ({
     )
 }
 
-export default BlogHeader
+export default BlogHeader;

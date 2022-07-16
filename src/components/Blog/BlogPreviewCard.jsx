@@ -23,7 +23,6 @@ const Heading = styled.h2`
 
 const Box = styled.div`
     width: 100%;
-    /* border: 1px solid red; */
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -32,7 +31,7 @@ const Box = styled.div`
 
     &:hover {
         ${Heading}{
-            color: red;
+            color: rgba(97, 123, 255, 1);
             transition: 0.1s ease-in-out;
         }
     }
@@ -56,7 +55,6 @@ const Description = styled.p`
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     padding-inline: 12px;
-    /* color: rgba(0, 0, 0, 0.8); */
     opacity: 0.8;
     width:100%;
     display: block; /* Fallback for non-webkit */
