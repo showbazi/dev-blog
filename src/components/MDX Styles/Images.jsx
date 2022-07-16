@@ -8,7 +8,7 @@ const CustomImageContainer = styled.div`
 // custom component for Next.js Image component
 const NextImage = (props) => (
     <CustomImageContainer>
-        <Image {...props} />
+        <Image {...props} alt=""/>
     </CustomImageContainer>
 )
 
@@ -17,7 +17,7 @@ const Images = {
     
     img: (props) => (
         <CustomImageContainer>
-            <img {...props} />
+            <Image {...props} alt=""/>
         </CustomImageContainer>
     )
 };
