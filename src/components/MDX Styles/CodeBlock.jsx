@@ -38,7 +38,7 @@ const CodeBlock = ({children}) => {
 
     const {props: {className, children: code = ""}} = children;
 
-    const language = className ? className.replace(/language-/, "") : ""
+    const language = className ? className.replace(/language-/, "") : null
 
     const handleCopy = () => {
         navigator.clipboard.writeText(code);
