@@ -2,6 +2,9 @@ import Link from 'next/link';
 import React, { useState } from 'react'
 import { device } from 'utils/ResponsiveBreakpoints';
 import styled from 'styled-components';
+import Search from './Search';
+import useLockBodyScroll from 'hooks/useLockBodyScroll';
+
 
 
 // ---------icons----------
@@ -101,9 +104,9 @@ const Icon = styled.svg`
 // ------------------------------------styles------------------------------------------
 
 
-const CustomIconButton = ({handleIconHover, toggleTheme, children, theme}) => {
+const CustomIconButton = ({handleIconHover, children, theme, onClick}) => {
     return (
-        <IconButton onMouseEnter={handleIconHover} onMouseLeave={handleIconHover} onClick={toggleTheme}>
+        <IconButton onMouseEnter={handleIconHover} onMouseLeave={handleIconHover} onClick={onClick}>
             <Icon theme={theme}>
                 {children}
             </Icon>
@@ -115,43 +118,60 @@ const CustomIconButton = ({handleIconHover, toggleTheme, children, theme}) => {
 const AppHeader = ({toggleTheme, theme}) => {
 
     const [isHovered, setIsHovered] = useState(false);
-    const [isDark, setIsDark] = useState(false)
+    // const [isDark, setIsDark] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // custom hook to lock the scroll of body on modal opening
+    const {isLocked, handleToggle} = useLockBodyScroll();
 
     const handleIconHover = () => {
         setIsHovered(prev => !prev);
     }
 
+    const handleModalState = () => {
+        setIsModalOpen(prev => !prev);
+        handleToggle();
+    }
+
     // const handleTheme = () => {
     //     setIsDark(prev => !prev);
     // } 
-    
     return (
-        <HeaderContainer>
-            <Link href="/" alt="homepage">
-                <Logo theme={theme}>
-                    <LogoElement1>SAGAR</LogoElement1>
-                    <LogoElement2>SHOWBAZI.</LogoElement2>
-                </Logo>
-            </Link>
+        <>
+            <HeaderContainer>
+                <Link href="/" alt="homepage">
+                    <Logo theme={theme}>
+                        <LogoElement1>SAGAR</LogoElement1>
+                        <LogoElement2>SHOWBAZI.</LogoElement2>
+                    </Logo>
+                </Link>
 
-            <LinksContainer>
-                <CustomIconButton theme={theme}>
-                    {searchButtonSvg}
-                </CustomIconButton>
-                
-                <CustomIconButton handleIconHover={handleIconHover} toggleTheme={toggleTheme} theme={theme}>
-                    {theme === "dark" ? (
-                        isHovered ? lightButtonSvg : lightButtonBoldSvg
-                    ) : (
-                        isHovered ? nightButtonSvg : nightButtonBoldSvg
-                    )}
-                </CustomIconButton>
 
-                <CustomIconButton theme={theme}>
-                    {hamburgerMenuButtonSvg}
-                </CustomIconButton>
-            </LinksContainer>
-        </HeaderContainer>
+                <LinksContainer>
+                    <CustomIconButton theme={theme} onClick={handleModalState}>
+                        {console.log("modal is open", isModalOpen)}
+                        
+                        {searchButtonSvg}
+                    </CustomIconButton>
+                    
+                    <CustomIconButton handleIconHover={handleIconHover} onClick={toggleTheme} theme={theme}>
+                        {theme === "dark" ? (
+                            isHovered ? lightButtonSvg : lightButtonBoldSvg
+                        ) : (
+                            isHovered ? nightButtonSvg : nightButtonBoldSvg
+                        )}
+                    </CustomIconButton>
+
+                    <CustomIconButton theme={theme}>
+                        {hamburgerMenuButtonSvg}
+                    </CustomIconButton>
+                </LinksContainer>
+            </HeaderContainer>
+            
+            {!!isModalOpen && 
+                <Search isModalOpen={isModalOpen} handleModalState={handleModalState} theme={theme}/> 
+            }
+        </>
     )
 }
 

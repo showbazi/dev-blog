@@ -12,7 +12,7 @@ const PlainText = styled.div`
 `;
 
 const TextLink = styled.a`
-    color: rgba(97, 123, 255, 1);
+    color: #2ab4fe;
     text-decoration: none;
     &:hover {
         text-decoration: underline;
@@ -40,7 +40,7 @@ headings.forEach(tag => {
 
 // ------------------paragraph text ---------------------
 export const BlogText = (props) => (
-    <PlainText mt="1.1rem" mb="1.1rem" lineHeight="1.3rem" letterSpacing="0.1px" {...props} />
+    <PlainText as="p" mt="1.1rem" mb="1.1rem" lineHeight="1.3rem" letterSpacing="0.1px" {...props} />
 )
 // ------------------paragraph text ---------------------
 

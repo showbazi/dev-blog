@@ -3,8 +3,8 @@ import styled from 'styled-components';
 
 const CustomFooter = styled.div`
     font-size: 0.875rem;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
+    margin-top: 4rem;
+    margin-bottom: 2rem;
     text-align: center;
 `;
 

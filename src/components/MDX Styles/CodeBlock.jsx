@@ -27,7 +27,7 @@ const CopyButton = styled.button`
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: 500;
-  background-color: ${props => props.copyCode ? "rgb(44 192 178)" : "rgba(97, 123, 255, 1)"};
+  background-color: ${props => props.copyCode ? "rgb(44, 192, 178)" : "rgba(97, 123, 255, 1)"};
   padding: 3px;
   border-radius: 5px;
   cursor: pointer;

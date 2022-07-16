@@ -19,11 +19,17 @@ const BlogContainer = styled.div`
     }
 `;
 
+const MdxContainer = styled.div`
+    padding-inline: 1rem;
+`;
+
 const BlogPage = ({mdxSource, blogData}) => {
     return (
         <BlogContainer>
             <BlogHeader {...blogData}/>
-            <MDXRemote {...mdxSource} components={MdxComponents}/>
+            <MdxContainer>
+                <MDXRemote {...mdxSource} components={MdxComponents}/>
+            </MdxContainer>
         </BlogContainer>
     )
 }

@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconButton } from 'components/AppHeader';
 import Link from 'next/link';
+import useGetViews from 'hooks/useGetViews';
 
 // -------------------styles-----------------
 
@@ -79,6 +80,8 @@ const BlogPreviewCard = ({
     title,
     totalViews,
 }) => {
+
+    const { data: views} = useGetViews(customID, totalViews);
     
     // coverting the slug to a complete link
     const link = `/blog/${slug}`
@@ -100,7 +103,7 @@ const BlogPreviewCard = ({
 
                     <HorizontalStack>
                         <ExtraDetails>{createdAt}</ExtraDetails>
-                        <ExtraDetails>{totalViews} views</ExtraDetails>
+                        <ExtraDetails>{views} views</ExtraDetails>
                         <ExtraDetails>{readingTime}</ExtraDetails>
                     </HorizontalStack>
 

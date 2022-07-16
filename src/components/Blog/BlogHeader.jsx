@@ -1,6 +1,8 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import useGetViews from 'hooks/useGetViews';
 
 // -------------------styles-----------------
 const Box = styled.div`
@@ -52,28 +54,49 @@ const BlogHeader = ({
     totalViews,
     customID,
 }) => {
-  return (
-    <>
-        <Box>
-            <Image 
-                src={banner} 
-                width={16}
-                height={9}
-                layout='responsive'
-                objectFit='cover'
-                alt={altText}
-            />
 
-            <Heading>{title}</Heading>
+    const url = `/api/views/${customID}`;
 
-            <HorizontalStack>
-                <ExtraDetails>{createdAt}</ExtraDetails>
-                <ExtraDetails>{totalViews} views</ExtraDetails>
-                <ExtraDetails>{readingTime}</ExtraDetails>
-            </HorizontalStack>
-        </Box>
-    </>
-  )
+    const { data: views, mutate } = useGetViews(customID, totalViews);
+
+    useEffect(() => {
+    //   for axios I want an async function but we can't make the callback of useEffect the async so we are using IIFE
+    //   In IIFE the first parenthesis will store the actual function and second parenthesis will call that function
+        (
+            async () => {
+                try {
+                    await axios.post(url);
+                    mutate();
+                } catch (err) {
+                    console.log(err);
+                }        
+            }
+        )()
+    }, [])
+    
+
+    return (
+        <>
+            <Box>
+                <Image 
+                    src={banner} 
+                    width={16}
+                    height={9}
+                    layout='responsive'
+                    objectFit='cover'
+                    alt={altText}
+                />
+
+                <Heading>{title}</Heading>
+
+                <HorizontalStack>
+                    <ExtraDetails>{createdAt}</ExtraDetails>
+                    <ExtraDetails>{views} views</ExtraDetails>
+                    <ExtraDetails>{readingTime}</ExtraDetails>
+                </HorizontalStack>
+            </Box>
+        </>
+    )
 }
 
 export default BlogHeader

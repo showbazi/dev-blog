@@ -24,8 +24,8 @@ const PostListHeading = styled.h2`
     margin-top: 2rem;
     margin-bottom: 24px;
     width: max-content;
-    padding: 0 8px 6px 0;
-    border-bottom: 2px solid red;
+    padding: 0 8px 4px 0;
+    border-bottom: 4px solid rgba(97, 123, 255, 1);
 `;
 
 const PostsContainer = styled.div`
