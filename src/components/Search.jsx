@@ -29,7 +29,7 @@ const ModalContent = styled.div`
   z-index: 12;
   border-radius: 6px;
   background-color: ${(prop) =>
-    prop.theme === "light" ? "#343333" : "#012420"};
+    prop.theme === "light" ? "rgb(27, 56, 78)" : "rgba(0, 41, 74, 1)"};
 
   @media ${device.tablet} {
     left: 5%;
@@ -91,8 +91,8 @@ const Search = ({ isModalOpen, handleModalState, theme }) => {
     });
     setSearchResults(data);
   };
-  console.log("deb text", debouncedText);
-  console.log("sesrch results", searchResults);
+  // console.log("deb text", debouncedText);
+  // console.log("sesrch results", searchResults);
   useEffect(() => {
     if (!debouncedText) {
       setSearchResults([]);

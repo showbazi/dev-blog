@@ -149,7 +149,7 @@ const LinksContainer = styled.div`
 
 export const IconButton = styled.button`
   background-color: ${(prop) =>
-    prop.theme === "light" ? "" : "rgba(0, 0, 0, 0.4)"};
+    prop.theme === "light" ? "rgba(187, 187, 187, 1)" : "rgba(0, 41, 74, 1)"};
   color: ${(prop) => (prop.theme === "light" ? "black" : "white")};
   padding: 8px;
   max-width: ${(props) => props.maxWidth};
@@ -164,8 +164,8 @@ export const IconButton = styled.button`
 
   &:hover {
     background-color: ${(prop) =>
-      prop.theme === "light" ? "rgba(250, 0, 0, 1)" : "rgba(0, 0, 0, 0.5)"};
-    filter: brightness(5) contrast(2);
+      prop.theme === "light" ? "rgb(151, 150, 150)" : "rgba(0, 41, 74, 0.5)"};
+    /* filter: brightness(5) contrast(2); */
   }
 `;
 
@@ -181,6 +181,7 @@ const CustomIconButton = ({ handleIconHover, children, theme, onClick }) => {
     <IconButton
       onMouseEnter={handleIconHover}
       onMouseLeave={handleIconHover}
+      theme={theme}
       onClick={onClick}
     >
       <Icon theme={theme}>{children}</Icon>
@@ -190,16 +191,16 @@ const CustomIconButton = ({ handleIconHover, children, theme, onClick }) => {
 
 // ---------main component------------------
 const AppHeader = ({ toggleTheme, theme }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  //   const [isHovered, setIsHovered] = useState(false);
   // const [isDark, setIsDark] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // custom hook to lock the scroll of body on modal opening
   const { isLocked, handleToggle } = useLockBodyScroll();
 
-  const handleIconHover = () => {
-    setIsHovered((prev) => !prev);
-  };
+  //   const handleIconHover = () => {
+  //     setIsHovered((prev) => !prev);
+  //   };
 
   const handleModalState = () => {
     setIsModalOpen((prev) => !prev);
@@ -225,17 +226,11 @@ const AppHeader = ({ toggleTheme, theme }) => {
           </CustomIconButton>
 
           <CustomIconButton
-            handleIconHover={handleIconHover}
+            /*handleIconHover={handleIconHover}*/
             onClick={toggleTheme}
             theme={theme}
           >
-            {theme === "dark"
-              ? isHovered
-                ? lightButtonSvg
-                : lightButtonBoldSvg
-              : isHovered
-              ? nightButtonSvg
-              : nightButtonBoldSvg}
+            {theme === "dark" ? nightButtonBoldSvg : lightButtonBoldSvg}
           </CustomIconButton>
 
           <CustomIconButton theme={theme}>
