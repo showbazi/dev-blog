@@ -15,4 +15,42 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  line-height: calc(1em + 0.725rem);
+  /* font-family: "Wotfard", Futura, -apple-system, sans-serif; */
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+body,
+input,
+button,
+select,
+option {
+  font-family: "Wotfard", Futura, -apple-system, sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 600;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
 }
