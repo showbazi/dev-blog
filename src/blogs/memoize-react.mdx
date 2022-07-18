@@ -1,6 +1,6 @@
 ---
 title: "Memoization is not same in React"
-description: "Memo in React is different than the Memoization in general in computing"
+description: "Memo in React is different than the Traditional Memoization"
 banner: /blogs/first-blog/react-memo.png
 altText: "memoization in react"
 customID: 0bdc45fe-3b34-449d-a56f-448dbd925ade
@@ -12,13 +12,159 @@ But worry not! I was also one of you, but with time I got better and now have a 
 
 This article will help you on the Memoization in React and help you to move a step further towards becoming a better React developer.
 
+### Basic Code Setup
+
+Before implementing Memoization let's write some code for initial setup
+
+```jsx
+import { useState } from "react";
+import "./styles.css";
+
+const ColouredBox = ({ color }) => {
+  console.log("coloured box rendered ", color);
+  return (
+    <div style={{ width: "2rem", height: "2rem", backgroundColor: color }} />
+  );
+};
+
+export default function App() {
+  const [renderNum, setRenderNum] = useState(0);
+
+  console.log("app rendered ", renderNum);
+
+  return (
+    <div className="App">
+      <h2>Render Num {renderNum}</h2>
+      <ColouredBox color="red" />
+      <br />
+      <br />
+      <button onClick={() => setRenderNum(renderNum + 1)}>Render Number</button>
+    </div>
+  );
+};
+```
+
+On running this code the browser will render and then on clicking the button **Render Number** it will increase the number by one
+
+![Render app component in Browser](/blogs/first-blog/render-browser-001.png "App Component")
+
+and if we open the console, there we see that on every click of the **Render Number** the `console.log("app rendered ", renderNum)` and `console.log("coloured box rendered ", color)` both are rendered. 
+
+
+```    
+app rendered  0
+coloured box rendered  red 
+app rendered  1
+coloured box rendered  red 
+app rendered  2
+coloured box rendered  red 
+app rendered  3
+coloured box rendered  red 
+app rendered  4
+coloured box rendered  red 
+```
+
+
+But since the `color` prop is not changing/ updating in the `ColouredBox` Component we want to limit its rendering and will only render when we update the color prop. So to prevent that we can memoize the **ColouredBox** component.
+
+### Using React.Memo
+
+So to memoize the **ColouredBox** component let's use `React.memo` 
+
+```jsx
+import { useState, memo } from "react";
+
+/*-----ColouredBox Component------------*/
+
+const MemoizedColouredBox = memo(ColouredBox);
+
+export default function App() {
+
+    /*-----previous code------------*/
+    
+    return(
+        /*-----replace the ColouredBox with the MemoizedColouredBoxComponent------------*/
+
+        <MemoizedColouredBox color="red" />
+
+        /*----------rest of the code---------*/
+    )
+}
+```
+
+and on console we can see that the `coloured box rendered red` is rendered only once and on clicking the **Render Number** button the `console.log("app rendered", renderNum )` is getting printed as its the only thing we are updating
+
+```
+app rendered  0
+coloured box rendered  red 
+app rendered  1
+app rendered  2
+app rendered  3
+app rendered  4
+app rendered  5
+```
+
+Now what if we want to change the color also. So let's add a button to change the colour also and see how it behaves
+
+```jsx
+/*-----same code as previous------------*/
+
+export default function App() {
+
+    const [color, setColor] = useState("red");
+
+    /*-----same code as previous------------*/
+    
+    return(
+        <div className = "App">
+        /*-----add a button that will change the colour of the box below the Render Number button------------*/
+
+            /*-----same code as previous------------*/
+
+            <br />
+            <button onClick={() => setColor(color === "red" ? "green" : "red")}>
+                Change Colour
+            </button>
+        </div>
+    )
+}
+```
+
+so the browser will render
+
+![Render app component with colour button](/blogs/first-blog/with-change-colour-button.png "App Component")
+
+and console will look like this
+
+```
+app rendered  0
+coloured box rendered  red 
+app rendered  1
+app rendered  2
+coloured box rendered  green 
+app rendered  2
+app rendered  3
+app rendered  4
+app rendered  5
+coloured box rendered  red
+```
+
+here on clicking the **renderNum** button the `console.log("app rendered", renderNum)` is the console that printed but when we click the **Change Colour** button the `console.log("app rendered", renderNum)` and `console.log("coloured box rendered", color)` both are printed on the console. But when we click the **Change Colour** button the `console.log("app rendered", renderNum)` and `console.log("coloured box rendered", color)` both are printed but the catch here is that **coloured box rendered red** is printed again which should have not been happened if we subscribe to the idea of **Memoization(Traditional)**.
+
+
 ### What is Memoization(Traditional)
+
+Before understanding that how Memoizationworks in React first understand how the Memoization(traditional) works
 
 > _In computing, memoization or memoisation is an optimization technique used primarily to speed up computer programs by storing the results of expensive function calls and returning the cached result when the same inputs occur again. Memoization has also been used in other contexts, such as in simple mutually recursive descent parsing._
 >
 > -Wikipedia
 
+
 ### How React Memoizes
+
+
+
 
 ### When We Should Memoize
 
