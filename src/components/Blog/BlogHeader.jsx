@@ -12,7 +12,6 @@ const Box = styled.div`
   flex-direction: column;
   gap: 12px;
   padding-bottom: 24px;
-  cursor: pointer;
 `;
 
 const Heading = styled.h2`
