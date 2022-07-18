@@ -18,6 +18,13 @@ const TextLink = styled.a`
     text-decoration: underline;
   }
 `;
+
+const BlockQuotesText = styled.blockquote`
+  opacity: 0.7;
+  padding: 0px 32px;
+  margin-top: 24px;
+  margin-bottom: 48px;
+`;
 // ----------------styles --------------------------
 
 const Texts = {};
@@ -57,7 +64,14 @@ export const LinkText = (props) => (
 );
 // ------------------------text link------------------------------------------
 
+// ------------------blockquotes-----------------------------------------
+// export const BlockQuotes = (props) => {
+//   <BlockQuotesText {...props} />;
+// };
+// ------------------blockquotes-----------------------------------------
+
 Texts.p = BlogText;
 Texts.a = LinkText;
+Texts.blockquote = BlockQuotesText;
 
 export default Texts;
