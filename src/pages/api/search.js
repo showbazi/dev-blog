@@ -50,7 +50,7 @@ const handleSearch = async (req, res) => {
         const blogs = await blogModel.aggregate(agg);
 
         // sending the array of blogs with title, createdAt, slug, totalViews, description, readingTime
-        return res.status(200).send(blogs);
+        return res.status(200).json(blogs);
 
     } catch (err) {
         return res.status(400).send({errMessage});
