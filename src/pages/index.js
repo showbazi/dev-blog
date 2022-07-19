@@ -26,7 +26,7 @@ const Home = ({ topBlogs, latestBlogs, theme }) => {
   return (
     <HomePageContainer>
       <Head>
-        <title>Showbazi Blog</title>
+        <title>Sagar Showbazi</title>
       </Head>
 
       <BlogPreviewList heading="top blogs" blogs={topBlogs} theme={theme} />
