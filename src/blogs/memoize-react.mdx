@@ -162,9 +162,33 @@ Before understanding that how Memoization works in React first understand how th
 
 ### How React Memoizes
 
-
-
+The definition in react is different from the  classical definition of memoization it doesn't keep a log of all of the components based on the props that we sent in what it does is it only compares the previous props to the new props and when those props have changed it re-renders that's all memoization is compare the old props to the new props and when the props have changed it re-renders.
 
 ### When We Should Memoize
 
+Here's a few common use cases for the Memoization in React:
+
+- Identify the call patterns that you are going to use to your components, are you going to change the props a lot or are they going to be locked in when the app first starts and that's it. 
+If it's that second case when you have those values locked in that's when you want to use memos.
+
+- Here the cache is just for the instance of the **ColouredBox**, it's not for the **ColouredBox** as function 
+
+
 ### Should We Use React.Memo
+
+If we look into the React Docs for the [React.memo](https://reactjs.org/docs/react-api.html#reactmemo) there is a caveat
+
+> This method only exists as a performance optimization. Do not rely on it to “prevent” a render, as this can lead to bugs.
+
+React.memo only checks for prop changes. If the function component wrapped in React.memo has a useState, useReducer or useContext Hook in its implementation, it will still rerender when the state or context change.
+
+So the bottom line is don't prematurely optimize but also don't stress about re-rendering too much because React does the Virtual DOM to DOM reconcile and change the DOM only when it's necessary. So even if we are re-rendering the component for the same input or state then it's really not that bad of a deal if we compare the time or reources that is taken by React.createElement (that happens during the rendering of function) is nothing compared to the changing of DOM  and getting repaints and reflows.
+ 
+React is super-efficient when it comes to re-renders so that we don't have to stress too much about it.
+
+### useMemo
+
+React.memo does work well with the primitive values but when we introduce the arrays, objects and functions then it's a different story because the way JavaScript works is that it compares the primitive types by values but it compares the **arrays, objects and function** by reference. So when the re-renders happen it creates a new array or object with a new reference, it may have the exact same value but the references are different. React does a shallow comparison of the props or states for a very valid performance reason because deep comparison of props will take a lot of time in comparison with shallow comparison which for primitive value is going to look by the value like strings, arrays, boolean etc. but objects, arrays and functions are compared by the reference
+
+### useCallback
+
