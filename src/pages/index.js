@@ -1,28 +1,22 @@
-import Head from "next/head";
-import matter from "gray-matter";
-import readingTime from "reading-time";
+import Head from 'next/head';
+import matter from 'gray-matter';
+import readingTime from 'reading-time';
+import BlogPreviewList from 'components/Blog/BlogPreviewList';
+import connectDB from 'database/connectDB';
+import Blog from 'database/models/blogModel';
 
-// import styles from '../../styles/Home.module.css';
-import BlogPreviewList from "components/Blog/BlogPreviewList";
-import connectDB from "database/connectDB";
-import Blog from "database/models/blogModel";
-
-import getFileNames from "utils/getFileNames";
-import readBlogFiles from "utils/readBlogFiles";
-import styled from "styled-components";
+import getFileNames from 'utils/getFileNames';
+import readBlogFiles from 'utils/readBlogFiles';
+import styled from 'styled-components';
 
 // ---------------------styles----------------------------
 const HomePageContainer = styled.div`
   display: grid;
-  /* grid-template-columns: ; */
 `;
 
 // ---------------------styles----------------------------
 
 const Home = ({ topBlogs, latestBlogs, theme }) => {
-  // console.log("top blogs", topBlogs);
-  // console.log("latest blogs", latestBlogs);
-
   return (
     <HomePageContainer>
       <Head>
@@ -54,7 +48,7 @@ export const getStaticProps = async () => {
   const allParsedData = fileNames.map((fileName) => {
     // here we are removing the .mdx extension from all the names that are present in the array of fileName
     // and here the slug is the dynamic part of the url where we are using the blog filenames as  dynamic url path that comes after blogs
-    const slug = fileName.replace(".mdx", "");
+    const slug = fileName.replace('.mdx', '');
 
     // here we are getting the whole content (i.e. data + content) from the mdx
     const parsedFile = readBlogFiles(fileName);
@@ -66,8 +60,6 @@ export const getStaticProps = async () => {
     data.slug = slug;
     data.content = content;
 
-    // console.log("data", data);
-    // console.log("content", content);
     return data;
   });
 
@@ -101,11 +93,11 @@ export const getStaticProps = async () => {
   // here find method will give us the array of top blogs on basis of totalViews
   // sort is used to sort the result on the basis of specified field and to sort on decreasing order we use negative sign before the field
   const topBlogPosts = await Blog.find({}, projection)
-    .sort("-totalViews")
+    .sort('-totalViews')
     .limit(limit);
 
   const latestBlogPosts = await Blog.find({}, projection)
-    .sort("-createdAt")
+    .sort('-createdAt')
     .limit(limit);
 
   // for passing as props we can only send as JSON but JSON doesn't contains Date object so we have to convert the data into string
@@ -122,9 +114,6 @@ export const getStaticProps = async () => {
     blogObject.createdAt = blogObject.createdAt.toDateString();
     return blogObject;
   });
-
-  // console.log("blogs bulk update array", blogBulkUpdateArray);
-  // console.log("All parsed Data", allParsedData);
 
   return {
     props: { topBlogs, latestBlogs },

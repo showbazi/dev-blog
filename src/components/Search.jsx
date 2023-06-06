@@ -1,10 +1,10 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
-import { device } from "utils/ResponsiveBreakpoints";
-import { searchButtonSvg } from "./AppHeader";
-import useDebounce from "hooks/useDebounce";
-import SearchResults from "./SearchResults";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { device } from 'utils/ResponsiveBreakpoints';
+import { searchButtonSvg } from './AppHeader';
+import useDebounce from 'hooks/useDebounce';
+import SearchResults from './SearchResults';
 
 // ------------------------------styles---------------------------------------
 const ModalContainer = styled.div`
@@ -29,7 +29,7 @@ const ModalContent = styled.div`
   z-index: 12;
   border-radius: 6px;
   background-color: ${(prop) =>
-    prop.theme === "light" ? "rgb(27, 56, 78)" : "rgba(0, 41, 74, 1)"};
+    prop.theme === 'light' ? 'rgb(27, 56, 78)' : 'rgba(0, 41, 74, 1)'};
 
   @media ${device.tablet} {
     left: 5%;
@@ -48,7 +48,7 @@ const ModalHeader = styled.div`
   height: 2.75rem;
   display: flex;
   border-bottom: ${(prop) =>
-    prop.borderBottom === "1" ? "1px solid rgba(97, 123, 255, 0.7)" : null};
+    prop.borderBottom === '1' ? '1px solid rgba(97, 123, 255, 0.7)' : null};
 `;
 
 export const ModalHeaderSvg = styled.svg`
@@ -73,7 +73,7 @@ const ModalHeaderInput = styled.input`
 
 // ------------------------main component--------------------------------------
 const Search = ({ isModalOpen, handleModalState, theme }) => {
-  const [queryText, setQueryText] = useState("");
+  const [queryText, setQueryText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
   const handleQueryChange = (e) => {
@@ -84,15 +84,14 @@ const Search = ({ isModalOpen, handleModalState, theme }) => {
   const debouncedText = useDebounce(queryText, 500);
 
   const fetchResult = async () => {
-    const { data } = await axios.get("/api/search", {
+    const { data } = await axios.get('/api/search', {
       params: {
         query: debouncedText,
       },
     });
     setSearchResults(data);
   };
-  // console.log("deb text", debouncedText);
-  // console.log("sesrch results", searchResults);
+
   useEffect(() => {
     if (!debouncedText) {
       setSearchResults([]);
@@ -106,7 +105,7 @@ const Search = ({ isModalOpen, handleModalState, theme }) => {
     <ModalContainer>
       <Overlay onClick={handleModalState}></Overlay>
       <ModalContent theme={theme}>
-        <ModalHeader borderBottom={searchResults.length > 0 ? "1" : null}>
+        <ModalHeader borderBottom={searchResults.length > 0 ? '1' : null}>
           <ModalHeaderSvg theme={theme} color="rgba(97, 123, 255, 1)">
             {searchButtonSvg}
           </ModalHeaderSvg>

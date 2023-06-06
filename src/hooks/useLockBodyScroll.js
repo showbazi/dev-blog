@@ -11,7 +11,6 @@ const useLockBodyScroll = () => {
     }, [isLocked])
     
     const handleToggle = () => {
-        // console.log("body locked", isLocked);
         setIsLocked(!isLocked);
     }
 
