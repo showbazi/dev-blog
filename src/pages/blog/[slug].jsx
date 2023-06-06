@@ -62,8 +62,6 @@ export const getStaticProps = async (req, res) => {
 
   blogData.createdAt = createdAt.toDateString();
 
-  // console.log(content);
-
   return {
     props: { mdxSource, blogData },
   };
@@ -81,8 +79,6 @@ export const getStaticPaths = async () => {
       slug: item.slug,
     },
   }));
-
-  // console.log("paths", paths);
   
   return {
     paths,

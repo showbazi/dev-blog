@@ -1,8 +1,8 @@
-import Image from "next/image";
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import axios from "axios";
-import useGetViews from "hooks/useGetViews";
+import Image from 'next/image';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
+import useGetViews from 'hooks/useGetViews';
 
 // -------------------styles-----------------
 const Box = styled.div`
@@ -15,28 +15,18 @@ const Box = styled.div`
 `;
 
 const Heading = styled.h2`
-  font-family: "Wotfard", Futura, -apple-system, sans-serif;
-  /* padding-inline: 12px; */
+  font-family: 'Wotfard', Futura, -apple-system, sans-serif;
   font-size: 2.375rem;
   font-weight: 500;
-  /* line-height: 1.2;
-  display: block;  //Fallback for non-webkit 
-  display: -webkit-box;
-  -webkit-line-clamp: 2; // no of lines 
-  text-overflow: ellipsis;
-  overflow: hidden !important;
-  -webkit-box-orient: vertical; */
 `;
 
 const HorizontalStack = styled.div`
   display: flex;
   gap: 20px;
-  /* padding-inline: 12px; */
 `;
 
 const ExtraDetails = styled.span`
-  font-family: "Poppins", sans-serif;
-  /* font-size: 12px; */
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
   opacity: 0.6;
   font-size: 0.875rem;
