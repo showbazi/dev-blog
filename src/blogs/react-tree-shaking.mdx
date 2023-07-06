@@ -1,0 +1,108 @@
+---
+title: "Trim React Bundles With Tree Shaking For Faster Loads"
+description: "Leverage tree shaking to minimize bundle size and get faster loads"
+banner: /blogs/first-blog/tree-shaking.png
+altText: "tree shaking in react"
+customID: 43ca26c7-7c6f-4231-b277-c24342fcb0bb
+---
+
+
+Want to make your React app **SUPER SLIM**? Tree shaking is the way to go!
+
+## What is Tree Shaking? 
+
+Tree shaking is a term used in JavaScript bundlers like Webpack and Rollup. It basically means:
+
+- Removing **unused code** from your bundle
+- Leaving only the code your app **actually uses**
+
+This helps make your bundles *way smaller*! 💪
+
+
+## When Should You Tree Shake?
+
+Anytime you want to:
+
+- Reduce your app's **initial load time**
+- Make your app as **lightweight as possible**
+
+Some good times to tree shake are:
+
+- When deploying your React app to *production*
+- For npm packages to make them *tiny*
+
+## How to Tree Shake
+
+Here's how you enable tree shaking in a React app:
+
+- Import modules using `import`:
+```jsx
+import React from 'react' 
+```
+
+- Bundle your app with Webpack or Rollup. They support tree shaking!
+
+- Configure tree shaking in your bundler:
+```jsx
+// Webpack 
+optimization: {
+  usedExports: true
+}
+```
+
+- Only `import` what you *actually* use:
+
+```jsx
+import { useState } from 'react'
+```
+
+Not:
+
+```jsx
+import React from 'react'
+```
+
+- Without babel-preset-env configured to leave ES6 modules, CommonJS code won't be tree shaken.
+
+```jsx
+{
+  "presets": [
+    ["env", {
+      "modules": false
+    }]
+  ]
+}
+```
+
+- Make sure dependencies support tree shaking too!
+
+That's it, now shake that tree! 🎄
+
+## See it in Action
+
+Let's look at an example app *with* and *without* tree shaking:
+
+
+```jsx
+// Without Tree Shaking
+import * as react from 'react'
+// Bundle 500KB
+```
+
+```jsx
+// With Tree Shaking
+import { useState } from 'react'
+// Bundle 120KB 
+```
+
+
+Tree shaking reduced the bundle size by **380KB**! 🤯
+
+As your app grows, tree shaking will *really* start to pay off. So go shake some trees and watch your React bundle size get:  
+
+- Slimmed 🏋️‍♂️
+- Trimmed 💇
+- Optimized 💡    
+- Faster to load 🚀
+
+By tree slicing away the fat! 🥭🥭🥭
