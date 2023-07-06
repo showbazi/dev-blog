@@ -68,7 +68,7 @@ const BlogHeader = ({
         console.log(err);
       }
     })();
-  }, [mutate, url]);
+  }, []);
 
   return (
     <>

@@ -20,9 +20,6 @@ const HomePageContainer = styled.div`
 // ---------------------styles----------------------------
 
 const Home = ({ topBlogs, latestBlogs, theme }) => {
-  // console.log("top blogs", topBlogs);
-  // console.log("latest blogs", latestBlogs);
-
   return (
     <HomePageContainer>
       <Head>
@@ -66,8 +63,6 @@ export const getStaticProps = async () => {
     data.slug = slug;
     data.content = content;
 
-    // console.log("data", data);
-    // console.log("content", content);
     return data;
   });
 
