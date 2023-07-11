@@ -54,3 +54,18 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+@font-face {
+  font-family: 'Founder';
+  src: url('/fonts/FoundersGroteskCondensed-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'CardinalIt';
+  src: url('/fonts/cardinalfruitweb-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'CardinalReg';
+  src: url('/fonts/cardinalfruitweb-regular.woff2') format('woff2');
+}
