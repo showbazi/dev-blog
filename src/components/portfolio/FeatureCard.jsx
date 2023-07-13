@@ -4,6 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 import useGetViews from "hooks/useGetViews";
 
+const Title = styled.p`
+  font-weight: 500;
+  font-size: 2vw;
+  color: white;
+  width: 60%;
+  position: absolute;
+  bottom: 1rem;
+  left: 36px;
+  z-index: 1000;
+`;
+
 const FeaturedContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,6 +23,13 @@ const FeaturedContainer = styled.div`
   cursor: pointer;
   margin-top: 5vw;
   margin-bottom: 3vw;
+
+  &:hover {
+    ${Title} {
+      color: rgba(97, 123, 255, 1);
+      transition: 0.1s ease-in-out;
+    }
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -28,7 +46,7 @@ const ImageContainer = styled.div`
     width: 100%;
     height: 100%;
     display: inline-block;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 29.88%, #000000 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 24%, #000000 100%);
   }
 `;
 
@@ -40,24 +58,18 @@ const FeaturedImage = styled(Image)`
   object-fit: cover;
 `;
 
-const Title = styled.p`
-  font-weight: 500;
-  font-size: 2vw;
-  color: white;
-  width: 36vw;
-  position: absolute;
-  bottom: 2px;
-  left: 36px;
-  z-index: 1000;
-`;
-
 const DetailsContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-top: 1.5rem;
+  margin-top: 0.375rem;
   padding-inline: 2.25rem;
   gap: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-weight: 500;
 `;
 
 const Views = styled.p``;
@@ -87,7 +99,14 @@ export default function FeatureCard({ posts }) {
     <Link href={link}>
       <FeaturedContainer>
         <ImageContainer>
-          <FeaturedImage width={20} height={9} src={banner} layout="responsive" objectFit="cover" alt={altText} />
+          <FeaturedImage
+            width={20}
+            height={9}
+            src={banner}
+            layout="responsive"
+            objectFit="cover"
+            alt={altText}
+          />
           <Title>{title}</Title>
         </ImageContainer>
         <DetailsContainer>
