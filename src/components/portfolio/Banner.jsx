@@ -44,7 +44,7 @@ export default function Banner() {
     <BannerContainer>
       <SubTitle theme={theme}>Code, Sleep, Repeat</SubTitle>
       <Title theme={theme}>
-        Hey there! I'm <span style={{ color: "#FF4343" }}>Sagar</span>, a
+        Hey there! I&apos;m <span style={{ color: "#FF4343" }}>Sagar</span>, a
         software engineer.
       </Title>
     </BannerContainer>
