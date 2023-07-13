@@ -11,8 +11,8 @@ const LayoutContainer = styled.div`
   max-width: 1100px;
   display: flex;
   justify-content: center;
-  flex-direction: row-reverse;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   margin: auto;
 
   @media ${device.tablet} {

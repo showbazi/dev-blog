@@ -10,7 +10,7 @@ const CustomFooter = styled.div`
 
 const AppFooter = () => {
   return (
-    <CustomFooter>&copy; Copyright Sagar Showbazi 2022</CustomFooter>
+    <CustomFooter>&copy; Copyright Sagar Showbazi 2023</CustomFooter>
   )
 }
 

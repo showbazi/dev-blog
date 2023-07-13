@@ -3,17 +3,21 @@ import matter from "gray-matter";
 import readingTime from "reading-time";
 
 // import styles from '../../styles/Home.module.css';
-import BlogPreviewList from "components/Blog/BlogPreviewList";
 import connectDB from "database/connectDB";
 import Blog from "database/models/blogModel";
 
 import getFileNames from "utils/getFileNames";
 import readBlogFiles from "utils/readBlogFiles";
 import styled from "styled-components";
+import Banner from "components/portfolio/Banner";
+import Browser from "components/portfolio/Browser";
 
 // ---------------------styles----------------------------
 const HomePageContainer = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
   /* grid-template-columns: ; */
 `;
 
@@ -26,13 +30,8 @@ const Home = ({ topBlogs, latestBlogs, theme }) => {
         <title>Sagar Showbazi</title>
       </Head>
 
-      <BlogPreviewList heading="top blogs" blogs={topBlogs} theme={theme} />
-
-      <BlogPreviewList
-        heading="latest blogs"
-        blogs={latestBlogs}
-        theme={theme}
-      />
+      <Banner />
+      <Browser posts={latestBlogs} />
     </HomePageContainer>
   );
 };

@@ -30,6 +30,10 @@ const Box = styled.div`
   margin-bottom: 2.5rem;
   cursor: pointer;
 
+  &:last-child[data-isEvenBlog="false"] {
+    grid-column: 1 / -1;
+  }
+
   &:hover {
     ${Heading} {
       color: rgba(97, 123, 255, 1);
@@ -78,6 +82,7 @@ const BlogPreviewCard = ({
   slug,
   title,
   totalViews,
+  isEvenBlog
 }) => {
   const { data: views } = useGetViews(customID, totalViews);
 
@@ -87,7 +92,7 @@ const BlogPreviewCard = ({
   return (
     <>
       <Link href={link}>
-        <Box>
+        <Box data-isEvenBlog={isEvenBlog}>
           <Image
             src={banner}
             width={16}

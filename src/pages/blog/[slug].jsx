@@ -9,12 +9,12 @@ import MdxComponents from "components/MDX Styles/MdxComponents";
 import { device } from "utils/ResponsiveBreakpoints";
 
 const BlogContainer = styled.div`
-  /* width: 95%; */
+  width: 96%;
   /* padding-inline: 2rem; */
   /* margin: auto;
   padding-inline: 11rem; */
   flex: 1 1 686px;
-  max-width: min(686px, 100%);
+  /* max-width: min(686px, 100%); */
 
   @media ${device.tablet} {
     /* padding-inline: 0; */
