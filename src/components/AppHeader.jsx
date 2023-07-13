@@ -149,7 +149,7 @@ const LinksContainer = styled.div`
 
 export const IconButton = styled.button`
   background-color: ${(prop) =>
-    prop.theme === "light" ? "rgba(187, 187, 187, 1)" : "rgba(0, 41, 74, 1)"};
+    prop.theme === "light" ? "rgba(218, 218, 218, 1)" : "rgba(0, 41, 74, 1)"};
   color: ${(prop) => (prop.theme === "light" ? "black" : "white")};
   padding: 8px;
   max-width: ${(props) => props.maxWidth};
@@ -171,6 +171,7 @@ export const IconButton = styled.button`
 
 export const Icon = styled.svg`
   color: ${(prop) => (prop.theme === "light" ? "black" : "white")};
+  opacity: ${(prop) => prop.theme === "light" && "0.8"};
   width: 16px;
   height: 16px;
 `;

@@ -1,14 +1,40 @@
-import PageLayout from "components/PageLayout";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import PageLayout from "components/PageLayout";
 import { darkTheme, GlobalStyles, lightTheme } from "utils/ThemeConfig";
+import { THEMES } from "utils/constants";
 import "../../styles/globals.css";
 
+export const useThemeStore = create(
+  persist(
+    (set) => ({
+      activeTheme: THEMES.DARK,
+      setActiveTheme: (theme) =>
+        set(() => ({
+          activeTheme: theme,
+        })),
+    }),
+    {
+      name: "active-theme",
+      get: (key) => localStorage.getItem(key),
+    }
+  )
+);
+
 function MyApp({ Component, pageProps }) {
-  const [theme, setTheme] = useState("dark");
+  const activeTheme = useThemeStore((state) => state.activeTheme);
+  const setActiveTheme = useThemeStore((state) => state.setActiveTheme);
+
+  const [theme, setTheme] = useState(THEMES.DARK);
+
+  useEffect(() => {
+    setTheme(activeTheme);
+  }, [activeTheme]);
 
   const toggleTheme = () => {
-    theme === "light" ? setTheme("dark") : setTheme("light");
+    theme === "light" ? setActiveTheme("dark") : setActiveTheme("light");
   };
 
   return (
