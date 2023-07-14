@@ -107,9 +107,9 @@ const ContactTab = () => {
     <ContactContainer>
       <SubTitle theme={theme}>{currentDay} Bytes</SubTitle>
       <Title theme={theme}>
-        👇👇 "Contact me, because life is too short to hire boring people. Let's
+        👇👇 &quot;Contact me, because life is too short to hire boring people. Let&apos;s
         create something amazing together, and maybe share a laugh or two along
-        the way!" 👇👇
+        the way!&quot; 👇👇
       </Title>
       <hr
           style={{ border: "2px solid rgba(255, 67, 67, 0.8)", width: "80%" }}
