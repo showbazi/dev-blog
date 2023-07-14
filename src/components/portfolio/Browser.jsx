@@ -1,7 +1,9 @@
-import React from "react";
-import BrowserNav from "./BrowserNav";
+import React, { useEffect, useState } from "react";
+import BrowserNav, { useTabStore } from "./BrowserNav";
 import styled from "styled-components";
 import BlogTab from "./BlogTab";
+import ContactTab from "./ContactTab";
+import { TABS } from "utils/constants";
 
 const BrowserContainer = styled.div`
   height: 100%;
@@ -15,11 +17,21 @@ const BrowserContainer = styled.div`
   align-self: center;
 `;
 
-const Browser = ({posts}) => {
+const Browser = ({ posts }) => {
+  const activeTab = useTabStore((state) => state.activeTab);
+
+  const [active, setActive] = useState(TABS.BLOG);
+
+  useEffect(() => {
+    setActive(activeTab);
+  }, [activeTab]);
+
   return (
     <BrowserContainer>
       <BrowserNav />
-      <BlogTab posts={posts}/>
+      {active === TABS.BLOG && <BlogTab posts={posts} />}
+      {active === TABS.CONTACT && <ContactTab />}
+      {active === TABS.PROJECTS && <ContactTab />}
     </BrowserContainer>
   );
 };
