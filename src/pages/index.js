@@ -18,7 +18,6 @@ const HomePageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  /* grid-template-columns: ; */
 `;
 
 // ---------------------styles----------------------------
@@ -116,9 +115,6 @@ export const getStaticProps = async () => {
     blogObject.createdAt = blogObject.createdAt.toDateString();
     return blogObject;
   });
-
-  // console.log("blogs bulk update array", blogBulkUpdateArray);
-  // console.log("All parsed Data", allParsedData);
 
   return {
     props: { topBlogs, latestBlogs },

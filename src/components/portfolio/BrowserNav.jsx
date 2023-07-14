@@ -85,7 +85,7 @@ const TabIcon = styled.div`
 /**
  * Store to change the tab
  */
-export const useStore = create(
+export const useTabStore = create(
   persist(
     (set) => ({
       activeTab: TABS.BLOG,
@@ -107,8 +107,8 @@ export const useStore = create(
  */
 const BrowserNav = () => {
   const activeTheme = useThemeStore((state) => state.activeTheme);
-  const activeTab = useStore((state) => state.activeTab);
-  const setActiveTab = useStore((state) => state.setActiveTab);
+  const activeTab = useTabStore((state) => state.activeTab);
+  const setActiveTab = useTabStore((state) => state.setActiveTab);
 
   const [active, setActive] = useState(TABS.BLOG);
   const [theme, setTheme] = useState(THEMES.DARK);

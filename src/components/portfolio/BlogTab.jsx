@@ -101,7 +101,14 @@ const BlogTab = ({ posts }) => {
   }, [activeTheme]);
 
   const handleContactClick = () => {
-    const mailtoLink = `mailto:mail.bsagar@gmail.com`;
+    const email = "mail.bsagar@gmail.com";
+    const subject = "Regarding Contact";
+    const body = "Hello, I would like to get in touch with you.";
+
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
+
     window.location.href = mailtoLink;
   };
 
