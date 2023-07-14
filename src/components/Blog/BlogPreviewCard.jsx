@@ -30,7 +30,7 @@ const Box = styled.div`
   margin-bottom: 2.5rem;
   cursor: pointer;
 
-  &:last-child[data-isEvenBlog="false"] {
+  &:last-child[data-isevenblog="false"] {
     grid-column: 1 / -1;
   }
 
@@ -82,7 +82,7 @@ const BlogPreviewCard = ({
   slug,
   title,
   totalViews,
-  isEvenBlog
+  isEvenBlog,
 }) => {
   const { data: views } = useGetViews(customID, totalViews);
 
@@ -92,7 +92,7 @@ const BlogPreviewCard = ({
   return (
     <>
       <Link href={link}>
-        <Box data-isEvenBlog={isEvenBlog}>
+        <Box data-isevenblog={isEvenBlog}>
           <Image
             src={banner}
             width={16}
